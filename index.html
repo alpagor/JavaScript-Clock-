@@ -24,7 +24,8 @@
         //Reduce the clock radius (to 90%) to draw the clock well inside the canvas:
         radius = radius * 0.90;
         //Create a function to draw the clock:
-        drawClock();
+        //drawClock();
+        setInterval(drawClock, 1000);
 
         //Create a drawFace() function for drawing the clock face:
         function drawClock() {
@@ -87,10 +88,13 @@
         }
 
         function drawTime(ctx, radius) {
+            //Use Date to get hour, minute, second:
             var now = new Date();
             var hour = now.getHours();
             var minute = now.getMinutes();
             var second = now.getSeconds();
+            //Calculate the angle of the hour hand, and draw it a length (50% of radius)
+            // and a width (7% of radius):
             // hour
             hour = hour % 12;
             hour = (hour * Math.PI / 6) + (minute * Math.PI / (6 * 60)) + (second * Math.PI / (360 * 60));
