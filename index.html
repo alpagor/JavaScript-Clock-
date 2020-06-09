@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <!-- The canvas element must have an id attribute so it can be referred to by JavaScript -->
-        <!-- The width and height attribute is necessary to define the size of the canvas. -->
+    <!-- The width and height attribute is necessary to define the size of the canvas. -->
     <canvas id="canvas" width="400" height="400" style="background-color: #333"></canvas>
     <!-- drawing on the HTML canvas must be done with JavaScript: -->
     <script>
@@ -22,7 +24,8 @@
         //Reduce the clock radius (to 90%) to draw the clock well inside the canvas:
         radius = radius * 0.90;
         //Create a function to draw the clock:
-        function drawClock(){
+        drawClock();
+        function drawClock() {
             //context.arc(x, y, radius, startangel, endAngle 
             //(Math.pi - circumference of a circle with a passed radius))
             ctx.arc(0, 0, radius, 0, 2 * Math.PI);
@@ -30,7 +33,7 @@
             //Fill in a geometric shape.
             ctx.fill();
         }
-
     </script>
 </body>
+
 </html>

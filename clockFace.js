@@ -1,6 +1,6 @@
 //Create a drawFace() function for drawing the clock face:
 function drawClock() {
-  drawFace(ctx, radius);
+     drawFace(ctx, radius);
 }
 
 function drawFace(ctx, radius) {
