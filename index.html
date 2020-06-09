@@ -30,6 +30,7 @@
         function drawClock() {
             drawFace(ctx, radius);
             drawNumbers(ctx, radius);
+            drawTime(ctx, radius);
         }
 
         function drawFace(ctx, radius) {
@@ -43,7 +44,7 @@
             //Create a radial gradient (95% and 105% of original clock radius):
             //context.createRadialGradient(x0,y0,r0,x1,y1,r1);
             //x and y are the coordinates of the center of the circles r is the radius of the circles.
-            grad = ctx.createRadialGradient(0, 0, radius * 0, 95, 0, 0, radius * 1.05);
+            grad = ctx.createRadialGradient(0, 0, radius * 0.95, 0, 0, radius * 1.05);
             //Create 3 color stops, corresponding with the inner, middle, and outer edge of the arc:
             //Specifies the position where the gradient stops and the colors.
             //The color stops create a 3D effect.
@@ -84,6 +85,36 @@
                 ctx.rotate(-ang);
             }
         }
+
+        function drawTime(ctx, radius) {
+            var now = new Date();
+            var hour = now.getHours();
+            var minute = now.getMinutes();
+            var second = now.getSeconds();
+            // hour
+            hour = hour % 12;
+            hour = (hour * Math.PI / 6) + (minute * Math.PI / (6 * 60)) + (second * Math.PI / (360 * 60));
+            drawHand(ctx, hour, radius * 0.5, radius * 0.07);
+            // minute
+            minute = (minute * Math.PI / 30) + (second * Math.PI / (30 * 60));
+            drawHand(ctx, minute, radius * 0.8, radius * 0.07);
+            // second
+            second = (second * Math.PI / 30);
+            drawHand(ctx, second, radius * 0.9, radius * 0.02);
+        }
+
+        function drawHand(ctx, pos, length, width) {
+            ctx.beginPath();
+            ctx.lineWidth = width;
+            ctx.lineCap = "round";
+            ctx.moveTo(0, 0);
+            ctx.rotate(pos);
+            ctx.lineTo(0, -length);
+            ctx.stroke();
+            ctx.rotate(-pos);
+        }
+
+
     </script>
 </body>
 
